@@ -1,18 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectManagement.DbContexts;
 using ProjectManagement.Dto;
-using ProjectManagement.ManagerInterfaces;
 using ProjectManagement.Mappers;
 using ProjectManagement.Models;
 
 namespace ProjectManagement.Managers
 {
-    public class TaskManager(ProjectManagementDbContext dbcontext) : ITaskManager
+    public class TaskManager(ProjectManagementDbContext dbcontext)
     {
         private readonly ProjectManagementDbContext _dbcontext = dbcontext;
 
         // Tasks
-        public IQueryable<ProjectTaskDto> GetTasks()
+        public IEnumerable<ProjectTaskDto> GetTasks()
         {
             var tasks = _dbcontext.Tasks;
             return tasks.Select(t => t.ToDto());

@@ -1,17 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectManagement.DbContexts;
 using ProjectManagement.Dto;
-using ProjectManagement.ManagerInterfaces;
 using ProjectManagement.Mappers;
 using ProjectManagement.Models;
 
 namespace ProjectManagement.Managers
 {
-    public class ProjectManager(ProjectManagementDbContext dbcontext) : IProjectManager
+    public class ProjectManager(ProjectManagementDbContext dbcontext) 
     {
         private readonly ProjectManagementDbContext _dbcontext = dbcontext;
 
-        public IQueryable<ProjectDto> GetProjects()
+        public IEnumerable<ProjectDto> GetProjects()
         {
             var projects = _dbcontext.Projects;
             return projects.Select(p => p.ToDto());

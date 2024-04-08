@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectManagement.Dto;
-using ProjectManagement.ManagerInterfaces;
 using ProjectManagement.Managers;
 
 namespace ProjectManagement.Controllers
 {
     [ApiController]
     [Route("api/v1/tasks")]
-    public class TaskController(ITaskManager manager) : ControllerBase
+    public class TaskController(TaskManager manager) : ControllerBase
     {
-        private readonly ITaskManager _manager = manager;
+        private readonly TaskManager _manager = manager;
 
         [HttpGet]
         public IActionResult Get()

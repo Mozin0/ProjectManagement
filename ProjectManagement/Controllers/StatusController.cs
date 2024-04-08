@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectManagement.Dto;
-using ProjectManagement.ManagerInterfaces;
+
 using ProjectManagement.Managers;
 
 namespace ProjectManagement.Controllers
 {
     [ApiController]
     [Route("api/v1/statuses")]
-    public class StatusController(IStatusManager manager) : ControllerBase
+    public class StatusController(StatusManager manager) : ControllerBase
     {
-        private readonly IStatusManager _manager = manager;
+        private readonly StatusManager _manager = manager;
 
         [HttpGet]
         public IActionResult Get()

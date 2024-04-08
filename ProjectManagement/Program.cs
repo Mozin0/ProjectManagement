@@ -1,3 +1,4 @@
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using ProjectManagement;
 using ProjectManagement.DbContexts;
@@ -6,17 +7,18 @@ using ProjectManagement.Managers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+DotNetEnv.Env.Load();
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string secretConnectionString = Secret.ConnectionString;
+string connectionString = Env.GetString("DB_CONNECTION_STRING");
 
-// string connectionString = builder.Configuration.GetConnectionString(secretConnectionString) ??  "SuperbaseConnectionString";
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<ProjectManagementDbContext>(options => options.UseNpgsql(secretConnectionString));
+builder.Services.AddDbContext<ProjectManagementDbContext>(options => options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<IProjectManager, ProjectManager>();
 builder.Services.AddScoped<ITaskManager, TaskManager>();

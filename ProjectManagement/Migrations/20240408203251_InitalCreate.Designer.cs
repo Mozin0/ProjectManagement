@@ -12,8 +12,8 @@ using ProjectManagement.DbContexts;
 namespace ProjectManagement.Migrations
 {
     [DbContext(typeof(ProjectManagementDbContext))]
-    [Migration("20240408001544_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240408203251_InitalCreate")]
+    partial class InitalCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

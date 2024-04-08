@@ -1,0 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using ProjectManagement.Models;
+
+namespace ProjectManagement.DbContexts
+{
+    public class ProjectManagementDbContext(DbContextOptions<ProjectManagementDbContext> options) : DbContext(options)
+    {  
+        public DbSet<Status> Statuses { get; set; }
+        public DbSet<ProjectTask> Tasks { get; set; }
+        public DbSet<Project> Projects { get; set; }
+    }
+}

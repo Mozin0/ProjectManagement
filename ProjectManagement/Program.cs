@@ -1,4 +1,5 @@
 using DotNetEnv;
+using LinqToDB.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProjectManagement.DbContexts;
 using ProjectManagement.Managers;
@@ -17,7 +18,7 @@ string connectionString = Env.GetString("DB_CONNECTION_STRING");
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ProjectManagementDbContext>(options => options.UseNpgsql(connectionString));
-
+LinqToDBForEFTools.Initialize();
 builder.Services.AddScoped<ProjectManager>();
 builder.Services.AddScoped<TaskManager>();
 builder.Services.AddScoped<StatusManager>();

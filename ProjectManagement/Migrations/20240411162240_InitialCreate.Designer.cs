@@ -12,8 +12,8 @@ using ProjectManagement.DbContexts;
 namespace ProjectManagement.Migrations
 {
     [DbContext(typeof(ProjectManagementDbContext))]
-    [Migration("20240408203251_InitalCreate")]
-    partial class InitalCreate
+    [Migration("20240411162240_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,11 +83,11 @@ namespace ProjectManagement.Migrations
 
             modelBuilder.Entity("ProjectManagement.Models.Status", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()

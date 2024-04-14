@@ -1,12 +1,12 @@
-import { useState } from 'react'
-// import './App.css'
+import 'tailwindcss/tailwind.css'
+import { Toaster } from './components/ui/toaster'
 import AppRoutes from './routes/routes'
 
 function App() {
   return (
     <>
       <AppRoutes />
-
+      <Toaster />
     </>
   )
 }

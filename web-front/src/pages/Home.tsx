@@ -1,28 +1,32 @@
+import { DataTable } from "@/components/ui/custom/customTable";
 import { Project } from "@/models/project";
 import { useEffect, useState } from "react";
+import { columns as projectTableColumns } from '@/components/ui/custom/projectTableColumns';
 
-const baseurl = "";
+const baseurl = "http://localhost:5159/api/v1";
+
+
 const Home = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Project[]>([]);
 
-  async function GetProjects() {
+  async function getProjects() {
     try {
-        const response = await fetch(baseurl);
-        if (!response.ok) throw new Error("HTTP error " + response.status);
-        const data = await response.json();
-        setData(data);
+      const response = await fetch(baseurl + "/projects");
+      if (!response.ok) throw new Error("HTTP error " + response.status);
+      const data = await response.json();
+      setData(data);
     } catch (error) {
-        console.error('Error fetching projects:', error);
+      console.error("Error fetching projects:", error);
     }
   }
 
   useEffect(() => {
-    GetProjects();
-  }, [])
+    getProjects();
+  }, []);
 
   return (
     <div>
-      <h1>Home Page</h1>
+      <DataTable columns={projectTableColumns} data={data} />
     </div>
   );
 };

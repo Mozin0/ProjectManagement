@@ -1,23 +1,14 @@
-import { DataTable } from "@/components/ui/custom/customTable";
+import { DataTable } from "@/components/data-table/data-table";
 import { Project } from "@/models/project";
 import { useEffect, useState } from "react";
-import { columns as projectTableColumns } from '@/components/ui/custom/projectTableColumns';
-
-const baseurl = "http://localhost:5159/api/v1";
-
-
+import { columns } from "@/components/projectColumns";
+import { fetchProjects } from "@/api/projectsApi";
 const Home = () => {
   const [data, setData] = useState<Project[]>([]);
 
   async function getProjects() {
-    try {
-      const response = await fetch(baseurl + "/projects");
-      if (!response.ok) throw new Error("HTTP error " + response.status);
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-    }
+   var projects = await fetchProjects();
+   setData(projects);
   }
 
   useEffect(() => {
@@ -26,7 +17,7 @@ const Home = () => {
 
   return (
     <div>
-      <DataTable columns={projectTableColumns} data={data} />
+      <DataTable columns={columns} data={data} />
     </div>
   );
 };

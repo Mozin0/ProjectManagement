@@ -7,8 +7,8 @@ export class Project {
     name: string;
     createdDate: Date;
     tasks:  Task[] = [];
-    statusId: number;
-    status: Status;
+    statusId?: number;
+    status?: Status;
 
     constructor(id: Guid,  name: string,  createdDate: Date, tasks: Task[], statusId: number, status: Status) {
         this.id = id;

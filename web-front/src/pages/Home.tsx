@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { columns } from "@/components/projectColumns";
 import { fetchProjects } from "@/api/projectsApi";
 import { Guid } from "guid-typescript";
+
 const Home = () => {
   const [data, setData] = useState<Project[]>([]);
 
   async function getProjects() {
-   var projects = await fetchProjects();
-   setData(projects);
+    var projects = await fetchProjects();
+    setData(projects);
   }
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const Home = () => {
       const dummyData: Project[] = Array.from({ length: 25 }, (_, index) => ({
         id: Guid.create(),
         name: `Dummy Project ${index + 1}`,
-        createdDate: new Date(), // Assuming you want the current date
+        createdDate: new Date(),
         tasks: [],
         statusId: 0,
         status: undefined,

@@ -12,7 +12,7 @@ using ProjectManagement.DbContexts;
 namespace ProjectManagement.Migrations
 {
     [DbContext(typeof(ProjectManagementDbContext))]
-    [Migration("20240411162240_InitialCreate")]
+    [Migration("20240423220259_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -32,6 +32,9 @@ namespace ProjectManagement.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("Deadline")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
@@ -55,6 +58,9 @@ namespace ProjectManagement.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("Deadline")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")

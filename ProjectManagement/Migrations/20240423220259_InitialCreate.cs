@@ -32,6 +32,7 @@ namespace ProjectManagement.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Deadline = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     StatusId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
@@ -51,6 +52,7 @@ namespace ProjectManagement.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Deadline = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ParentTaskId = table.Column<Guid>(type: "uuid", nullable: true),
                     ProjectID = table.Column<Guid>(type: "uuid", nullable: false),
                     StatusId = table.Column<int>(type: "integer", nullable: true)

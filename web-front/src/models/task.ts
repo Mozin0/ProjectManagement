@@ -3,30 +3,30 @@ import { Status } from "./status";
 import { Project } from "./project";
 
 export class Task {
-  id: Guid;
+  id: string;
   name: string;
   createdDate: Date;
-  deadline: Date;
+  deadline: string;
   parentTaskId?: Guid;
   parentTask?: Task;
-  subTasks: Task[] = [];
+  subTasks?: Task[] = [];
   projectId: Guid;
   project?: Project;
   statusId?: number;
   status?: Status;
 
   constructor(
-    id: Guid,
+    id: string,
     name: string,
     createdDate: Date,
-    deadline: Date,
-    parentTaskId: Guid,
-    parentTask: Task,
-    subTasks: Task[],
     projectId: Guid,
     project: Project,
     statusId: number,
-    status: Status
+    status: Status,
+    deadline: string,
+    parentTaskId?: Guid,
+    parentTask?: Task,
+    subTasks?: Task[],
   ) {
     this.id = id;
     this.name = name;

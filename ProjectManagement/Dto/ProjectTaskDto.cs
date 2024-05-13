@@ -1,22 +1,26 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
-namespace ProjectManagement.Dto
+namespace ProjectManagement.Dto;
+public class ProjectTaskDto
 {
-    public class ProjectTaskDto
-    {
-        public Guid Id { get; set; }
-        [Required(AllowEmptyStrings = false ,ErrorMessage = "Task name is required")]
-        public string Name { get; set; } = string.Empty;
-        public DateTime CreatedDate { get; set; }
-        
-        // Sub Tasks
-        public Guid? ParentTaskId { get; set; }
-        public ProjectTaskDto? ParentTask { get; set; } 
-        public List<ProjectTaskDto>? SubTasks { get; set; } = [];
+    public Guid Id { get; set; } = Guid.Empty;
+    [Required(AllowEmptyStrings = false ,ErrorMessage = "Task name is required")]
+    public string Name { get; set; } = string.Empty;
+    public DateTime CreatedDate { get; set; } = DateTime.Now;
+    public DateTime Deadline { get; set; }
+    
+    
+    // Sub Tasks
+    public Guid? ParentTaskId { get; set; } = Guid.Empty;
+    [JsonIgnore]
+    public ProjectTaskDto? ParentTask { get; set; } 
+    public List<ProjectTaskDto>? SubTasks { get; set; } = [];
 
-        public Guid ProjectID { get; set; }
-        public ProjectDto? Project { get; set; }
-        public int? StatusId {get; set; }
-        public StatusDto? Status { get; set; }
-    }
+    public Guid ProjectID { get; set; } = Guid.Empty;
+    [JsonIgnore]
+    public ProjectDto? Project { get; set; }
+    public int? StatusId {get; set; }
+    [JsonIgnore]
+    public StatusDto? Status { get; set; }
 }

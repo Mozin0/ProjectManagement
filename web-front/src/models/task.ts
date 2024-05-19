@@ -1,4 +1,3 @@
-import { Guid } from "guid-typescript";
 import { Status } from "./status";
 import { Project } from "./project";
 
@@ -7,10 +6,10 @@ export class Task {
   name: string;
   createdDate: Date;
   deadline: string;
-  parentTaskId?: Guid;
+  parentTaskId?: string | null;
   parentTask?: Task;
   subTasks?: Task[] = [];
-  projectId: Guid;
+  projectId: string;
   project?: Project;
   statusId?: number;
   status?: Status;
@@ -19,12 +18,12 @@ export class Task {
     id: string,
     name: string,
     createdDate: Date,
-    projectId: Guid,
+    projectId: string,
     project: Project,
     statusId: number,
     status: Status,
     deadline: string,
-    parentTaskId?: Guid,
+    parentTaskId?: string | null,
     parentTask?: Task,
     subTasks?: Task[],
   ) {

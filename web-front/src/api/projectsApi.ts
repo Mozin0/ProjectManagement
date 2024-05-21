@@ -52,7 +52,7 @@ export async function addProject(project: Project): Promise<Project> {
 export async function updateProject(id: string, project: Project): Promise<Project> {
   try {
     if (project !== null) {
-      const response = await fetch(baseurl + "/projects", {
+      const response = await fetch(`${baseurl}/projects/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export async function updateProject(id: string, project: Project): Promise<Proje
       throw new Error("Project is null");
     }
   } catch (error) {
-    console.log("Error updating Project", error);
+    console.log("Error Updating Project", error);
     throw error;
   }
 }

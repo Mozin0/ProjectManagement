@@ -49,7 +49,10 @@ export async function addProject(project: Project): Promise<Project> {
   }
 }
 
-export async function updateProject(id: string, project: Project): Promise<Project> {
+export async function updateProject(
+  id: string,
+  project: Project
+): Promise<Project> {
   try {
     if (project !== null) {
       const response = await fetch(`${baseurl}/projects/${id}`, {
@@ -71,7 +74,7 @@ export async function updateProject(id: string, project: Project): Promise<Proje
   }
 }
 
-export async function deleteProject(id: string) : Promise<void> {
+export async function deleteProject(id: string): Promise<void> {
   try {
     const response = await fetch(`${baseurl}/projects/${id}`, {
       method: "DELETE",

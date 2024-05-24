@@ -11,7 +11,7 @@ public class ProjectTask
     public DateTime Deadline { get; set; }
 
     // Sub Tasks
-    public Guid? ParentTaskId { get; set; } = Guid.Empty;
+    public Guid? ParentTaskId { get; set; } = null;
     [JsonIgnore]
     public ProjectTask? ParentTask { get; set; } 
     public List<ProjectTask>? SubTasks { get; set; } = [];

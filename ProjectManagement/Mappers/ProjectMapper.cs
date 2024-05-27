@@ -1,8 +1,5 @@
 using ProjectManagement.Dto;
 using ProjectManagement.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ProjectManagement.Mappers
 {
@@ -31,6 +28,7 @@ namespace ProjectManagement.Mappers
                 Id = project.Id,
                 Name = project.Name,
                 CreatedDate = project.CreatedDate,
+                Deadline = project.Deadline,
                 Tasks = project.Tasks?.Select(p => p.ToDto()).ToList(),
                 StatusId = project.StatusId,
                 Status = project.Status?.ToDto()
@@ -59,6 +57,7 @@ namespace ProjectManagement.Mappers
             // Map the properties of ProjectDto to the corresponding properties of the Project entity
             project.Name = projectDto.Name;
             project.CreatedDate = projectDto.CreatedDate;
+            project.Deadline = projectDto.Deadline;            
             // Map tasks if present, otherwise initialize to an empty list
             project.Tasks = projectDto.Tasks?.Select(dto => dto.ToEntity(new ProjectTask())).ToList() ?? new List<ProjectTask>();
             project.StatusId = projectDto.StatusId;

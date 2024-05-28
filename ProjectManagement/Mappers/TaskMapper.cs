@@ -1,7 +1,5 @@
-using Riok.Mapperly.Abstractions;
 using ProjectManagement.Dto;
 using ProjectManagement.Models;
-using System.Linq;
 
 namespace ProjectManagement.Mappers;
 public static partial class TaskMapper 
@@ -30,7 +28,8 @@ public static partial class TaskMapper
             ParentTask = task.ParentTask?.ToDto(),
             StatusId = task.StatusId,
             Status = task.Status?.ToDto(),
-            SubTasks = task.SubTasks?.Select(MapEntityToDto).ToList() // Recursively map subtasks
+            SubTasks = task.SubTasks?.Select(MapEntityToDto).ToList(), // Recursively map subtasks
+            Deadline = task.Deadline
         };
     }
 
@@ -59,13 +58,17 @@ public static partial class TaskMapper
         task.Project = taskDto.Project?.ToEntity(new Project());
         task.StatusId = taskDto.StatusId;
         task.Status = taskDto.Status?.ToEntity(new Status());
-        task.ParentTaskId = taskDto.ParentTaskId;
+        task.ParentTaskId = taskDto.ParentTaskId == Guid.Empty ? null : taskDto.ParentTaskId;
+        task.Deadline = taskDto.Deadline;
         if (taskDto.SubTasks is not null)
         {
             task.SubTasks = [];
             foreach (var subTaskDto in taskDto.SubTasks)
             {
-                task.SubTasks.Add(MapDtoToEntity(subTaskDto, new ProjectTask()));
+                // task.SubTasks.Add(MapDtoToEntity(subTaskDto, new ProjectTask()));
+                var subTask = MapDtoToEntity(subTaskDto, new ProjectTask());
+                subTask.ParentTaskId = task.Id;  
+                task.SubTasks.Add(subTask);
             }
         }
         return task;
